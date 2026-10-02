@@ -27,6 +27,53 @@ Many study tools either show static content or provide a chat window without mea
 - Gemini or OpenAI-compatible AI providers
 - Plain CSS with responsive layouts
 
+## System architecture
+
+```mermaid
+flowchart TB
+	Learner["Learner"] --> Browser["React workspace<br/>Vite frontend"]
+
+	subgraph UI["Orbit Workspace"]
+		Browser --> Dashboard["Dashboard"]
+		Browser --> Chat["Tutor chat"]
+		Browser --> Planner["Study plan"]
+		Browser --> Library["Subjects, goals, achievements"]
+		Browser --> Storage["Browser localStorage"]
+	end
+
+	Chat -->|"POST /api/ask"| API["Node.js tutor API<br/>server/index.js"]
+	API --> Gemini["Google Gemini"]
+	API --> OpenAI["OpenAI-compatible provider"]
+	API --> Response["Tutor response"]
+	Response --> Chat
+
+	Chat --> Offline["Offline tutor service<br/>built-in knowledge + calculator"]
+	Offline --> Chat
+```
+
+## Tutor question workflow
+
+```mermaid
+flowchart TD
+	Start(["Learner asks a question"]) --> Input["Tutor chat input"]
+	Input --> Request["Frontend sends message and study context"]
+	Request --> Server["Node.js POST /api/ask"]
+	Server --> Provider{"AI provider configured?"}
+	Provider -->|"Yes"| Gemini{"Gemini available?"}
+	Gemini -->|"Yes"| Model["Generate grounded tutor response"]
+	Gemini -->|"No"| OpenAI{"OpenAI provider available?"}
+	OpenAI -->|"Yes"| Model
+	OpenAI -->|"No"| Offline["Use offline tutor mode"]
+	Provider -->|"No"| Offline
+	Offline --> Known{"Known topic or simple calculation?"}
+	Known -->|"Yes"| LocalAnswer["Return local answer"]
+	Known -->|"No"| Explain["Explain that an AI key is needed"]
+	Model --> Display["Display answer in chat"]
+	LocalAnswer --> Display
+	Explain --> Display
+	Display --> Save["Persist conversation in localStorage"]
+```
+
 ## Project structure
 
 ```text
