@@ -1,0 +1,32 @@
+.goal-list { display: grid; gap: 22px; max-width: 720px; }
+.goal-item-top { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 9px; }
+.goal-item-top strong { color: #536158; font-size: 13px; }
+.goal-item-top span, .goal-item small { color: #99a39a; font-size: 10px; }
+.goal-item small { display: block; margin-top: 7px; }
+.achievement-score { display: flex; align-items: baseline; gap: 7px; color: #91a092; }
+.achievement-score strong { color: var(--green); font-family: Fraunces, serif; font-size: 38px; font-weight: 500; }
+.achievement-score span { font-size: 11px; }
+.achievement-panel { margin-top: 5px; }
+.achievement-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.achievement-card { display: grid; grid-template-columns: 45px 1fr; gap: 12px; align-items: center; padding: 15px; border: 1px solid #e9ece5; border-radius: 9px; background: #fafbf7; opacity: .58; }
+.achievement-card.unlocked { opacity: 1; border-color: #d8e5d5; background: #f2f7ef; }
+.achievement-icon { display: grid; place-items: center; width: 43px; height: 43px; color: #a8b5a8; background: #e9eee7; border-radius: 12px; font-family: Georgia, serif; font-size: 23px; }
+.achievement-card.unlocked .achievement-icon { color: #b28242; background: #f7eabe; }
+.achievement-card strong { display: block; color: #536158; font-size: 12px; }
+.achievement-card p { color: #929d93; font-size: 10px; line-height: 1.4; margin: 5px 0 0; }
+.achievement-card > span { grid-column: 2; color: #a0aaa0; font-size: 9px; }
+.achievement-card.unlocked > span { color: #6e9873; }
+.help-modal > p:not(.eyebrow) { color: #879287; font-size: 12px; line-height: 1.55; margin: 0; }
+.help-points { display: grid; gap: 9px; padding: 5px 0 8px; }
+.help-points span { display: flex; align-items: center; gap: 8px; color: #607063; font-size: 11px; }
+.help-points svg { color: var(--green); }
+.profile-button { border: 0; width: 100%; color: inherit; text-align: left; cursor: pointer; }
+.profile-button:hover { background: #e5e9e0; border-radius: 8px; }
+.account-modal { text-align: center; }
+.account-avatar { display: grid; place-items: center; width: 58px; height: 58px; margin: 0 auto 14px; border-radius: 50%; color: white; background: #d78d6e; font-weight: 700; font-size: 20px; }
+.account-avatar.guest { background: #8ca78f; }
+.account-muted { color: #8d998f; font-size: 11px; line-height: 1.5; margin: 0; }
+.account-modal form { display: grid; gap: 13px; margin-top: 17px; text-align: left; }
+.account-action { justify-content: center; width: 100%; margin-top: 17px; }
+.account-modal form .account-action { margin-top: 0; }
+@media (max-width: 600px) { .achievement-grid { grid-template-columns: 1fr; } .achievement-score { margin-top: 18px; } }
